@@ -5,8 +5,19 @@
 
 @layer base {
   :root {
-    --color-primary: #9e4c64;
-    --color-primary-hover: #8b3f57;
+    --color-primary: #2c367d;
+    --color-primary-hover: #4854a3;
+    --bg-body: #f4f6fb;
+    --bg-surface: 	#ffffff;
+    --text-main: #fffefe;
+  }
+
+  .dark {
+    --color-primary: #a0abf6;
+    --color-primary-hover: #a5aff4;
+    --bg-body: #141726;
+    --bg-surface: 	#23263b;
+    --text-main: 	#f9f9f9;
   }
 }
 
@@ -17,5 +28,17 @@
 
   .hover\:bg-primary-hover:hover {
     background-color: var(--color-primary-hover);
+  }
+
+    .bg-body {
+    background-color: var(--bg-body);
+  }
+
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+
+  .text-main {
+    color: var(--text-main);
   }
 }
