@@ -5,19 +5,19 @@
 
 @layer base {
   :root {
-    --color-primary: #2c367d;
-    --color-primary-hover: #4854a3;
-    --bg-body: #f4f6fb;
-    --bg-surface: 	#ffffff;
-    --text-main: #000000;
+    --color-primary: #2563eb;        /* Vivid Blue for buttons/accents */
+    --color-primary-hover: #1e40af;  /* Deeper Blue for hover */
+    --bg-body: #f9fafb;              /* Soft light background */
+    --bg-surface: #ffffff;           /* Clean white surfaces */
+    --text-main: #111827;            /* Rich black-gray text */
   }
 
   .dark {
-    --color-primary: #a0abf6;
-    --color-primary-hover: #a5aff4;
-    --bg-body: #141726;
-    --bg-surface: 	#23263b;
-    --text-main: 	#f9f9f9;
+    --color-primary: #60a5fa;        /* Soft blue for contrast in dark mode */
+    --color-primary-hover: #3b82f6;  /* Slightly brighter hover */
+    --bg-body: #0f172a;              /* Deep navy body */
+    --bg-surface: #1e293b;           /* Subtle dark surface */
+    --text-main: #f8fafc;            /* Near-white text */
   }
 }
 
@@ -30,7 +30,7 @@
     background-color: var(--color-primary-hover);
   }
 
-    .bg-body {
+  .bg-body {
     background-color: var(--bg-body);
   }
 
