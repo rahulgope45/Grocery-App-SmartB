@@ -2,12 +2,13 @@
 
 @import "tailwindcss";
 
+
 *{
     font-family:  "Inter", sans-serif;
 }
 
 
-@theme {
-    --color-primary: rgb(79, 191, 139); 
-    --color-primary-dull: rgb(0, 0, 0);
+:root {
+  --color-primary: #dda5b7;
+  --color-primary-dull: #f1dae1;
 }
