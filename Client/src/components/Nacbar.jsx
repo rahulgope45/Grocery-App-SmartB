@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const [dark, setDark] = useState(false);
 
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [dark]);
+const toggleTheme = () => {
+  if (typeof setDark === 'function') {
+    setDark(prev => !prev);
+  } else {
+    console.error('Theme toggle failed: setDark is not a function');
+  }
+};
+
+useEffect(() => {
+  if (dark) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}, [dark]);
+
 
   return (
     <nav className="bg-primary text-white dark:text-main px-6 md:px-12 lg:px-20 py-3 shadow-sm flex items-center justify-between transition-colors">
@@ -56,17 +67,21 @@ const Navbar = () => {
         </div>
 
         {/* Login Button */}
-        <button className="cursor-pointer px-6 py-2 bg-primary hover:bg-primary-hover text-white rounded-full transition">
+        <button className="cursor-pointer px-6 py-2 bg-blue-800  hover:bg-primary-hover text-white rounded-full transition">
           Login
         </button>
 
         {/* Theme Toggle */}
-        <button
-          onClick={() => setDark(!dark)}
-          className="px-4 py-2 border rounded-full bg-surface text-main dark:bg-bg-surface dark:text-main transition"
-        >
-          Toggle Theme
-        </button>
+        <div
+            className="Theme-Toggler cursor-pointer transition duration-300"
+            onClick={toggleTheme}
+            >
+            {dark ? (
+        <i className="bi bi-brightness-high-fill text-yellow-400 text-xl"></i>
+          ) : (
+        <i className="bi bi-moon-fill text-gray-700 dark:text-black text-xl"></i>
+        )}
+        </div>
       </div>
 
       {/* Mobile Menu Toggle */}
@@ -90,6 +105,17 @@ const Navbar = () => {
         <button className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-hover text-white rounded-full text-sm">
           Login
         </button>
+          {/* Theme Toggle */}
+        <div
+            className="Theme-Toggler cursor-pointer transition duration-300"
+            onClick={toggleTheme}
+            >
+            {dark ? (
+        <i className="bi bi-brightness-high-fill text-yellow-400 text-xl"></i>
+          ) : (
+        <i className="bi bi-moon-fill text-gray-700 dark:text-black text-xl"></i>
+        )}
+        </div>
       </div>
 
     </nav>
