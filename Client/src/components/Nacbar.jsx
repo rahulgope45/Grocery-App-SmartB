@@ -33,9 +33,9 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        <NavLink to="/" className="text-main hover:text-[var(--color-primary)] transition">Home</NavLink>
-        <NavLink to="/All-Products" className="text-main hover:text-[var(--color-primary)] transition">All Products</NavLink>
-        <NavLink to="/contact" className="text-main hover:text-[var(--color-primary)] transition">Contact</NavLink>
+        <NavLink to="/" className="text-main hover:text-yellow-300 transition">Home</NavLink>
+        <NavLink to="/All-Products" className="text-main hover:text-yellow-300 transition">All Products</NavLink>
+        <NavLink to="/contact" className="text-main hover:text-yellow-300 transition">Contact</NavLink>
 
         {/* Search Bar */}
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full bg-surface">
@@ -97,7 +97,7 @@ const Navbar = () => {
       </button>
 
       {/* Mobile Menu */}
-      <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-body dark:bg-body shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
+      <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-body dark:bg-body shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden  z-50`}>
         <NavLink to="/" className="text-main hover:text-[var(--color-primary)] transition">Home</NavLink>
         <NavLink to="/All-Products" className="text-main hover:text-[var(--color-primary)] transition">All Products</NavLink>
         <NavLink to="/contact" className="text-main hover:text-[var(--color-primary)] transition">Contact</NavLink>

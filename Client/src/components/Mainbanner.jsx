@@ -1,8 +1,28 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { assets } from '../assets/assets';
 import { Link } from 'react-router-dom';
 
 function Mainbanner() {
+
+ const messages = [
+    "Freshness You Can Trust",
+    "Organic Goodness Delivered",
+    "Farm to Table, Everyday",
+    "Only the Best for Your Basket",
+    "Savings You Will Love",
+  ];
+
+  const[ index,setIndex] =useState(0)
+
+  useEffect(() =>{
+    const interval =setInterval(() =>{
+      setIndex(prev => (prev +1) % messages.length)
+    },3000);
+    return () =>clearInterval(interval)
+  },[])
+
+
+
   return (
     <div className="relative w-full bg-body dark:bg-body text-main">
       {/* Background images */}
@@ -11,9 +31,9 @@ function Mainbanner() {
 
       {/* Overlay content */}
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-5 md:px-16 py-12">
-        <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight max-w-xl text-blue-800 dark:text-main">
-          Freshness You Can Trust,<br className="hidden md:block" />
-          <span className="text-color-primary-hover">Savings You Will Love!</span>
+        <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight max-w-xl text-yellow-600 dark:text-main">
+          {messages[index]}<br className="hidden md:block" />
+          <span className="text-color-primary-hover">-Explore Today!</span>
         </h1>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
