@@ -9,6 +9,7 @@ function Home() {
         <Mainbanner/>
         <Categories/> 
         <BestSeller/>
+        
     </div>
   )
 }
