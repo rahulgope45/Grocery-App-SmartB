@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { assets } from '../assets/assets';
-import { useAppcontext } from './Appcontext';
+import { useAppcontext } from '../context/Appcontext';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
