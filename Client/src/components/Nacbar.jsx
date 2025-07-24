@@ -20,13 +20,15 @@ const Navbar = () => {
 
   const logout = async () => {
     // Handle logout logic
+      setUser(null);
+       navigate('/');
   };
 
   return (
     <nav className="bg-primary text-main dark:text-main px-6 md:px-12 lg:px-20 py-3 shadow-sm flex items-center justify-between transition-colors duration-300">
 
       {/* Logo */}
-      <NavLink to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+      <NavLink to="/" className="flex items-center gap-2" onClick={() => setOpen(true)}>
         <img src="/shopeeicon.svg" alt="Logo" className="h-8 w-auto" />
         <h1 className="text-2xl md:text-3xl font-bold tracking-wide text-main">Shopee</h1>
       </NavLink>
@@ -106,7 +108,7 @@ const Navbar = () => {
         )}
         {!user ? (
           <button
-            onClick={() => setShowUserLogin(true)}
+            onClick={() => setShowUserLogin(false)}
             className="px-6 py-2 mt-2 bg-primary hover:bg-primary-hover text-white rounded-full text-sm"
           >
             Login

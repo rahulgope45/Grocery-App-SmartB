@@ -3,13 +3,16 @@ import Navbar from "./components/Nacbar";
 import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
+import { useAppcontext } from "./context/Appcontext";
+import Login from "./components/Login";
 
 function App() {
   const isSellerPath = useLocation().pathname.includes("seller");
-
+  const {showUserLogin} = useAppcontext()
   return (
     <div className="bg-body text-main min-h-screen transition-colors duration-300">
       {!isSellerPath && <Navbar />}
+      {showUserLogin ? <Login/> : null}
 
       <Toaster/>
       
