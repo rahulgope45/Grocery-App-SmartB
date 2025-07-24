@@ -8,7 +8,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const navigate = useNavigate();
-  const { user, setUser, setShowUserLogin } = useAppcontext();
+  const { user, setUser, setShowUserLogin, searchQuery,
+    setSearchQuerry, } = useAppcontext();
 
   const toggleTheme = () => {
     setDark(prev => !prev);
@@ -23,6 +24,12 @@ const Navbar = () => {
       setUser(null);
        navigate('/');
   };
+
+  useEffect(() =>{
+   if(searchQuery.length > 0){
+    navigate("/products")
+   }
+  },[searchQuery])
 
   return (
     <nav className="bg-primary text-main dark:text-main px-6 md:px-12 lg:px-20 py-3 shadow-sm flex items-center justify-between transition-colors duration-300">
@@ -42,6 +49,7 @@ const Navbar = () => {
         {/* Search Bar */}
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full bg-surface">
           <input
+          onChange={(e) => setSearchQuerry(e.target.value)}
             className="py-1.5 w-full bg-transparent text-main outline-none placeholder-gray-500"
             type="text"
             placeholder="Search products"
