@@ -96,7 +96,7 @@ useEffect(() => {
                         </button>
                         <button 
                         onClick={() =>{addTocart(product._id); navigate(("/cart"))} }
-                        className="w-full py-3.5 cursor-pointer font-medium bg-indigo-500 text-white hover:bg-indigo-600 transition" >
+                        className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-indigo-600 transition" >
                             Buy now
                         </button>
                     </div>
@@ -117,7 +117,8 @@ useEffect(() => {
             <div>
                 <button 
                 onClick={()=>{navigate('/products'); scrollTo(0,0)}}
-                className='mx-auto cursor-pointer mx-12 my-16 py-2.5 border rounded text-main hover:bg-yellow-400 transition p-2'>See More</button>
+                className='mx-auto cursor-pointer mx-12 my-16 py-2.5 border rounded text-main hover:bg-primary-hover transition p-2'>
+                    See More</button>
             </div>
             </div>
         </div>
