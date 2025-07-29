@@ -42,3 +42,7 @@
     color: var(--text-main);
   }
 }
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

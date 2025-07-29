@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Cart() {
 
-    const{products, currency, cartItems, removeFromCart, getCartItem, getCartAmount, getCartCount} =useAppcontext()
+    const{products, currency, cartItems, removeFromCart, getCartItem, getCartAmount, getCartCount, updateCartItem,} =useAppcontext()
     const navigate = useNavigate();
     const [cartArray, setCartArray] = useState([])
     const [addresses, setAddresses] = useState(dummyAddress)
@@ -62,7 +62,10 @@ function Cart() {
                                     <p>Weight: <span>{product.weight || "N/A"}</span></p>
                                     <div className='flex items-center'>
                                         <p>Qty:</p>
-                                        <select className='outline-none'>
+                                        <select 
+                                        onChange={e => updateCartItem(product._id, Number(e.target.value))}
+                                        value={cartItems[product._id]}
+                                        className='outline-none'>
                                             {Array.from({ length: cartItems[product._id] > 9 ? cartItems[product._id] : 9 }).map((_, index) => (
                                             <option key={index} value={index + 1}>{index + 1}
                                             </option>
@@ -76,7 +79,7 @@ function Cart() {
                         <button onClick={() => removeFromCart(product._id)}
                          className="cursor-pointer mx-auto">
                             <img
-                            src={assets.refresh_icon} alt='remove'
+                            src={assets.remove_icon} alt='remove'
                             className='inline-block w-6 h-6'
                             />
                         </button>
