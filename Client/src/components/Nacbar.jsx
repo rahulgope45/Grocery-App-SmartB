@@ -9,7 +9,7 @@ const Navbar = () => {
   const [dark, setDark] = useState(false);
   const navigate = useNavigate();
   const { user, setUser, setShowUserLogin, searchQuery,
-    setSearchQuerry, } = useAppcontext();
+    setSearchQuerry, getCartCount, } = useAppcontext();
 
   const toggleTheme = () => {
     setDark(prev => !prev);
@@ -62,7 +62,7 @@ const Navbar = () => {
           <div className="bg-white rounded-full p-2 shadow-md">
             <img src={assets.nav_cart_icon} alt="Cart icon" className="w-4" />
             <span className="absolute -top-2 -right-3 text-xs text-white bg-primary hover:bg-primary-hover w-[18px] h-[18px] rounded-full flex items-center justify-center">
-              3
+              {getCartCount()}
             </span>
           </div>
         </div>
@@ -99,12 +99,24 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Toggle */}
-      <button onClick={() => setOpen(!open)} aria-label="Menu" className="sm:hidden text-main">
+      <div className='flex iems-center gap-6 sm:hidden'>
+        <div className="relative cursor-pointer" onClick={() => navigate('/cart')}>
+          <div className="bg-white rounded-full p-2 shadow-md">
+            <img src={assets.nav_cart_icon} alt="Cart icon" className="w-4" />
+            <span className="absolute -top-2 -right-3 text-xs text-white bg-primary hover:bg-primary-hover w-[18px] h-[18px] rounded-full flex items-center justify-center">
+              {getCartCount()}
+            </span>
+          </div>
+        </div>
+        {/* Mobile Menu Toggle */}
+      <button onClick={() => setOpen(!open)} aria-label="Menu" className=" text-main">
         <div className="bg-white rounded-full p-2 shadow-md">
           <img src={assets.menu_icon} alt="Menu" />
         </div>
       </button>
+      </div>
+
+      
 
       {/* Mobile Menu */}
       <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-body dark:bg-body shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden  z-50`}>

@@ -1,71 +1,132 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { useAppcontext } from "../context/Appcontext";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({product}) => {
-    
+const ProductCard = ({ product }) => {
+  const { currency, addToCart, removeFromCart, cartItems } = useAppcontext();
+  const navigate = useNavigate();
 
-    const {currency, addToCart ,updateCartItem ,removeFromCart ,cartItems, navigate} =  useAppcontext();
-
-    
-
-    return product && product._id && (
+  return (
+    product &&
+    product._id && (
+      <div
+        className="
+          border border-gray-200 rounded-lg shadow-sm 
+          p-3 md:p-4 w-full max-w-[280px]
+          hover:shadow-md transition
+          flex flex-col
+        "
+      >
+        {/* Image Section */}
         <div
-        
-        className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2  min-w-56 max-w-56 w-full">
-            <div className="group cursor-pointer flex items-center justify-center px-2 cursor-pointer"
-            onClick={() => {navigate(`/products/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)}}
-            >
-                <img className="group-hover:scale-105 transition max-w-26 md:max-w-36" src={product.image[0]} alt={product.name} />
-            </div>
-            <div className="text-gray-500/60 text-sm">
-                <p>{product.category}</p>
-                <p className="text-gray-700 font-medium text-lg truncate w-full">{product.name}</p>
-                <div className="flex items-center gap-0.5">
-                    {Array(5).fill('').map((_, i) => (
-                        
-                            <img src={i < 4 ? assets.star_icon : assets.star_dull_icon}
-                            className="md:w-3 w3" key={i}
-                            />
-                        
-                        
-                    ))}
-                    <p>(4)</p>
-                </div>
-                <div className="flex items-end justify-between mt-3">
-                    <p className="md:text-xl text-base font-medium text-indigo-500">
-                        {currency}{product.offerPrice}{" "} <span className="text-gray-500/60 md:text-sm text-xs line-through">${product.price}</span>
-                    </p>
-                    <div className="text-indigo-500"
-                    onClick={() => {e.stopPropogation();}}
-                    >
-                        {!cartItems[product._id] ? (
-                            <button className="flex items-center justify-center gap-1 bg-white border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-indigo-600 font-medium cursor-pointer" 
-                            onClick={() => addToCart(product._id)} 
-                            >
-                                <img src={assets.cart_icon} alt="cart_icon"/>
-                                Add
-                            </button>
-                        ) : (
-                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-white rounded select-none">
-                                <button 
-                                onClick={() => {removeFromCart(product._id)}} 
-                                className="cursor-pointer text-md px-2 h-full" >
-                                    -
-                                </button>
-                                <span className="w-5 text-center">{cartItems[product._id]}</span>
-                                <button 
-                                onClick={() => {addToCart(product._id)}} 
-                                className="cursor-pointer text-md px-2 h-full" >
-                                    +
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
+          className="group cursor-pointer flex items-center justify-center mb-3"
+          onClick={() => {
+            navigate(`/products/${product.category.toLowerCase()}/${product._id}`);
+            scrollTo(0, 0);
+          }}
+        >
+          <img
+            className="
+              w-full h-40 md:h-48 object-cover 
+              rounded-md group-hover:scale-105 
+              transition-transform duration-300
+            "
+            src={product.image[0]}
+            alt={product.name}
+          />
         </div>
-    );
+
+        {/* Text Section */}
+        <div className="flex flex-col flex-1">
+          {/* Category */}
+          <p className="text-gray-400 text-xs uppercase tracking-wide">
+            {product.category}
+          </p>
+
+          {/* Name */}
+          <p className="text-gray-800 font-medium text-base md:text-lg truncate">
+            {product.name}
+          </p>
+
+          {/* Stars */}
+          <div className="flex items-center gap-1 mt-1">
+            {Array(5)
+              .fill("")
+              .map((_, i) => (
+                <img
+                  key={i}
+                  src={i < 4 ? assets.star_icon : assets.star_dull_icon}
+                  className="w-3 h-3 md:w-4 md:h-4"
+                  alt="star"
+                />
+              ))}
+            <span className="text-xs text-gray-500">(4)</span>
+          </div>
+
+          {/* Price & Cart */}
+          <div className="flex items-end justify-between mt-3">
+            {/* Price */}
+            <p className="text-indigo-500 font-semibold text-sm md:text-lg">
+              {currency}
+              {product.offerPrice}
+              <span className="text-gray-400 line-through ml-1 text-xs md:text-sm">
+                {currency}
+                {product.price}
+              </span>
+            </p>
+
+            {/* Cart Buttons */}
+            <div
+              className="text-indigo-500"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {!cartItems[product._id] ? (
+                <button
+                  className="
+                    flex items-center justify-center gap-1 bg-white border border-indigo-300 
+                    w-16 md:w-20 h-[34px] rounded text-indigo-600 text-sm font-medium
+                    hover:bg-indigo-50 transition
+                  "
+                  onClick={() => addToCart(product._id)}
+                >
+                  <img
+                    src={assets.cart_icon}
+                    alt="cart_icon"
+                    className="w-4 h-4"
+                  />
+                  Add
+                </button>
+              ) : (
+                <div
+                  className="
+                    flex items-center justify-center gap-2 bg-white border border-indigo-300
+                    w-16 md:w-20 h-[34px] rounded select-none
+                  "
+                >
+                  <button
+                    onClick={() => removeFromCart(product._id)}
+                    className="cursor-pointer text-md px-2"
+                  >
+                    -
+                  </button>
+                  <span className="w-5 text-center">
+                    {cartItems[product._id]}
+                  </span>
+                  <button
+                    onClick={() => addToCart(product._id)}
+                    className="cursor-pointer text-md px-2"
+                  >
+                    +
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
 };
 
-export default ProductCard
+export default ProductCard;
