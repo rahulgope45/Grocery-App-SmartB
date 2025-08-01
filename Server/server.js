@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import connectDB from './configs/db.js';
 import userRouter from './routes/userRoute.js';
+import sellerRouter from './routes/sellerRoutes.js';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 
 // User routes
 app.use('/api/user', userRouter);
+app.use('/api/seller', sellerRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
