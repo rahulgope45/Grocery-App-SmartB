@@ -17,7 +17,8 @@ const {navigate} = useAppcontext()
         style={{backgroundColor: category.bgColor}}
         onClick={()=>{
             navigate(`/products/${category.path.toLowerCase()} `);
-            screenTop(0,0)
+            window.scrollTo(0, 0);
+
 
         }
         }

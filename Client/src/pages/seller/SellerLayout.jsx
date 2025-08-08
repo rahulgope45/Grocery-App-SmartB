@@ -1,9 +1,15 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAppcontext } from "../../context/Appcontext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+  
 
 const SellerLayout = () => {
-  const { setSeller } = useAppcontext();
+  const {  axios,setIsSeller } = useAppcontext();
+    const navigate = useNavigate();
+  
 
   const sidebarLinks = [
     { name: "Add Products", path: "/seller", icon: assets.add_icon },
@@ -11,9 +17,22 @@ const SellerLayout = () => {
     { name: "Orders", path: "/seller/orders", icon: assets.order_icon },
   ];
 
-  const logout = () => {
-    setSeller(false);
+  const logout = async () => {
+    try {
+      const {data} = await axios.get('/api/seller/logout');
+      if(data.success){
+        toast.success(data.message)
+        setIsSeller(false);
+        navigate('/')
+      }else{ 
+        toast.error(data.message)
+
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
+
 
   return (
     <div className="flex flex-col min-h-screen">

@@ -8,9 +8,16 @@ function ProductCategory() {
     const {products} =useAppcontext();
     const {category} = useParams()
     
-    const searchCategory = categories.find((item) => item.path.toLowerCase() === category)
+    const searchCategory = categories.find(
+  (item) => item.path && item.path.toLowerCase() === category
+);
 
-    const filteredProducts = products.filter((product) =>product.category.toLowerCase() === category)
+const filteredProducts = products.filter(
+  (product) =>
+    Array.isArray(product.category) &&
+    product.category.some((cat) => cat.toLowerCase() === category.toLowerCase())
+);
+
 
 
   return (

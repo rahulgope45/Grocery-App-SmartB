@@ -1,21 +1,18 @@
 import mongoose from "mongoose";
 
-
-const productSchema =new mongoose.Schema(
- {
+const productSchema = new mongoose.Schema(
+  {
     name: { type: String, required: true },
     description: { type: Array, required: true },
-    password: { type: String, required: true },
     offerPrice: { type: Number, required: true },
     image: { type: Array, required: true },
-    category: { type: Array, required: true },
-    // Make catItems optional with default value
+    category: { type: [String], required: true },
     inStock: { type: Boolean, default: true },
   },
-  {timestamps:true}
+  { timestamps: true }
 );
 
-// Prevent model overwrite during hot reload in dev
-const Product = mongoose.models.product || mongoose.model("Product", productSchema);
+// ✅ FIXED model check
+const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
 
 export default Product;

@@ -3,13 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { assets } from '../assets/assets';
 import { useAppcontext } from '../context/Appcontext';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const navigate = useNavigate();
   const { user, setUser, setShowUserLogin, searchQuery,
-    setSearchQuerry, getCartCount, } = useAppcontext();
+    setSearchQuerry, getCartCount,axios} = useAppcontext();
 
   const toggleTheme = () => {
     setDark(prev => !prev);
@@ -21,8 +22,18 @@ const Navbar = () => {
 
   const logout = async () => {
     // Handle logout logic
-      setUser(null);
-       navigate('/');
+      try {
+        const {data} = await axios.get('/api/user/logout')
+        if(data.success){
+          toast.success(data.message)
+          setUser(null);
+
+        }
+        
+      } catch (error) {
+        toast.error(error.message)
+        
+      }
   };
 
   useEffect(() =>{

@@ -1,9 +1,12 @@
 import React from 'react'
 import { useAppcontext } from '../context/Appcontext';
+import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 function Login() {
 
-    const {setShowUserLogin, setUser} =useAppcontext()
+    const {setShowUserLogin, setUser, axios} =useAppcontext()
+    const navigate = useNavigate();
 
     const [state, setState] = React.useState("login");
     const [name, setName] = React.useState("");
@@ -11,12 +14,25 @@ function Login() {
     const [password, setPassword] = React.useState("");
 
     const onSubmitHandler = async (event)=>{
+        try {
         event.preventDefault();
-        setUser({
-            email: "test@rahuleile.dev",
-            name: "Rahuleile"
-        })
+        const {data} =await axios.post(`/api/user/${state}`,{
+            name, email, password
+        } );
+        if (data.success){
+            navigate('/')
+            setUser(data.user)
+            setShowUserLogin(false)
+
+        }else{
+            toast.error(error.message)
+
+        }
+
         setShowUserLogin(false)
+        } catch (error) {
+            
+        }
     }
 
   return (

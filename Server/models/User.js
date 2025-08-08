@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     // Make catItems optional with default value
-    catItems: { type: Object, default: {} },
+    cartItems: { type: Object, default: {} },
   },
   { minimize: false }
 );

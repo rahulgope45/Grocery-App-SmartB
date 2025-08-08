@@ -16,4 +16,8 @@ userRouter.get('/is-auth',authUser, isAuth);
 // logout route
 userRouter.get('/logout',authUser, logout);
 
+userRouter.get('/ping', (req, res) => {
+  res.send('✅ User route is working');
+});
+
 export default userRouter;
