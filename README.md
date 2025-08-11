@@ -113,7 +113,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 
 [![Saideep Morepatil](https://img.shields.io/badge/Saideep_Morepatil-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/saideep-morepatil-91aa32349/)
 
-[![Team Member](https://img.shields.io/badge/shivraj_mohite-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](shivrajmohite038@gmail.com)
+[![Team Member](https://img.shields.io/badge/shivraj_mohite-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://github.com/Shivrajmohite7/Shivrajmohite.git)
 
 [![Team Member](https://img.shields.io/badge/satyam_choudhary-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](satyamkumarc642@gmail.com)
 
